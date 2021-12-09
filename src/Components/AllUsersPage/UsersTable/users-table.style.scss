@@ -1,0 +1,108 @@
+.user-table-main {
+  width: 100%;
+  padding: 2% 20%;
+  header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    div {
+      width: 28%;
+      &:last-child {
+        width: 16%;
+        h6 {
+          text-align: center;
+        }
+      }
+      h6 {
+        font-size: 105%;
+        margin: 0;
+      }
+    }
+  }
+  section {
+    width: 100%;
+    .utr-loader {
+      display: flex;
+      width: 100%;
+      align-items: center;
+      justify-content: space-between;
+      border: 1px solid var(--border-color);
+      margin-bottom: 20px;
+      padding: 30px 20px;
+      border-radius: 20px;
+      h6 {
+        margin: 0;
+        font-size: 100%;
+        width: 28%;
+        span{
+            color: var(--border-color);
+            background-color: var(--border-color);
+            padding: 5px;
+            animation: 2s blink infinite linear;
+
+        }
+        &:last-child {
+          width: 16%;
+        }
+      }
+    }
+    .user-table-row {
+      display: flex;
+      width: 100%;
+      align-items: center;
+      justify-content: space-between;
+      border: 1px solid var(--border-color);
+      margin-bottom: 20px;
+      padding: 30px 20px;
+      border-radius: 20px;
+      transition: 0.3s;
+      &:hover {
+        background-color: var(--bg-color);
+        box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
+        transform: scale(1.02);
+      }
+      div {
+        width: 28%;
+        &:last-child {
+          width: 16%;
+          text-align: center;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          a {
+            padding: 8px 30px;
+            border-radius: 20px;
+            border: 3px solid var(--main-color);
+            font-weight: 500;
+            background-color: var(--main-color);
+            color: var(--bg-color);
+            transition: 0.3s;
+            cursor: pointer;
+            font-size: 90%;
+            text-decoration: none;
+            &:hover {
+              border: 3px solid var(--text-color);
+            }
+          }
+        }
+        h6 {
+          margin: 0;
+          font-size: 100%;
+          font-weight: 500;
+        }
+      }
+    }
+  }
+}
+@keyframes blink {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
