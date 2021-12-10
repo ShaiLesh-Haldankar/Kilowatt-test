@@ -1,73 +1,133 @@
-.user-page-main{
+.user-page-main {
+  width: 100%;
+  .user-page-body {
     width: 100%;
-    .user-page-body{
+    padding: 2% 20%;
+    display: flex;
+    .upb-user-info {
+      width: 250px;
+      img {
+        width: 200px;
+        height: 200px;
+        object-fit: cover;
+        border-radius: 50%;
+      }
+      h5,
+      p {
+        margin: 0;
+      }
+      h5 {
+        font-size: 120%;
+        margin: 10px 0;
+      }
+      p {
+        margin-bottom: 10px;
+        font-weight: 500;
+        color: var(--gray-color);
+      }
+      div {
         width: 100%;
-        padding: 2% 20%;
         display: flex;
-        .upb-user-info{
-            width: 250px;
-            img{
-                width: 200px;
-                height: 200px;
-                object-fit: cover;
-                border-radius: 50%;
+        align-items: center;
+        // justify-content: space-between;
+        button {
+          width: 60%;
+          padding: 8px;
+          background-color: transparent;
+          border: 2px solid var(--green-color);
+          // border: 0;
+          color: var(--green-color);
+          font-size: 100%;
+          border-radius: 20px;
+          &:nth-child(2) {
+            height: 40px;
+            width: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0;
+            margin-left: 10px;
+            cursor: pointer;
+            overflow: hidden;
+            border: 0;
+            &:hover {
+              img {
+                transform: scale(1.1);
+              }
             }
-            h5,p{
-                margin: 0;
+            img {
+              height: 40px;
+              width: 40px;
+              transition: 0.3s;
             }
-            h5{
-                font-size: 120%;
-                margin: 10px 0;
-            }
-            p{
-                margin-bottom: 10px;
-                font-weight: 500;
-                color: var(--gray-color);
-            }
-            div{
-                width: 100%;
-                display: flex;
-                align-items: center;
-                // justify-content: space-between;
-                button{
-                    width: 60%;
-                    padding: 8px;
-                    background-color: transparent;
-                    border: 2px solid var(--green-color);
-                    // border: 0;
-                    color: var(--green-color);
-                    font-size: 100%;
-                    border-radius: 20px;
-                    &:nth-child(2){
-                        height: 40px;
-                        width: 40px;
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
-                        padding: 0;
-                        margin-left: 10px;
-                        cursor: pointer;
-                        overflow: hidden;
-                        border: 0;
-                        &:hover{
-                            img{
-                                transform: scale(1.1) ;
-
-                            }
-                        }
-                        img{
-                            height: 40px;
-                            width: 40px;
-                            transition: 0.3s;
-                        }
-                    }
-                }
-
-            }
-
+          }
         }
-        .upb-user-posts{
-            width: calc(100% - 250px);
-        }
+      }
     }
+    .upb-user-posts {
+      width: calc(100% - 250px);
+      .post-card-loader {
+        margin-bottom: 50px;
+        display: flex;
+        flex-direction: column;
+        h6,
+        h5,
+        p {
+          margin: 0;
+          word-break: break-all;
+        }
+        h6 {
+          display: flex;
+          align-items: center;
+          button {
+            height: 30px;
+            width: 30px;
+            border: 0;
+            border-radius: 50%;
+            margin-right: 10px;
+            animation: 1s blink linear infinite;
+          }
+          span {
+            color: var(--border-color);
+            background-color: var(--border-color);
+            padding: 5px;
+            animation: 1s blink linear infinite;
+          }
+        }
+        h5 {
+          margin-top: 10px;
+          color: var(--border-color);
+          background-color: var(--border-color);
+          padding: 5px;
+          animation: 1s blink linear infinite;
+        }
+        p {
+          margin-top: 10px;
+          color: var(--border-color);
+          background-color: var(--border-color);
+          padding: 5px;
+          animation: 1s blink linear infinite;
+        }
+      }
+    }
+  }
+}
+@media (max-width: 767px) {
+  .user-page-main {
+    
+  .user-page-body {
+    flex-direction: column;
+    padding: 2% 5%;
+    .upb-user-info {
+      width: 100%;text-align: center;
+      margin-bottom: 5vh;
+      div{
+        justify-content: center;
+      }
+    }
+    .upb-user-posts {
+      width: 100%;
+    }
+  }
+  }
 }

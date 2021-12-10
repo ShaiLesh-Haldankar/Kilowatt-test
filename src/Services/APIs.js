@@ -30,6 +30,14 @@ export const AddNewPost = (data) => {
   };
   return axios(config);
 };
+export const editThePost = (data) => {
+  let config = {
+    method: "PUT",
+    url: `${baseUrl}posts/${data.id}`,
+    data: JSON.stringify(data),
+  };
+  return axios(config);
+};
 export const getPostDetails = (id) => {
   let config = {
     method: "get",
@@ -52,3 +60,19 @@ export const addComment = (data) => {
   };
   return axios(config);
 };
+export const deleteUsers = (id) =>{
+  let config = {
+    method: "delete",
+    url: `${baseUrl}users/${id}`
+  };
+  return axios(config);
+
+}
+export const deletePosts = (id) =>{
+  let config = {
+    method: "delete",
+    url: `${baseUrl}posts/${id}`
+  };
+  return axios(config);
+
+}

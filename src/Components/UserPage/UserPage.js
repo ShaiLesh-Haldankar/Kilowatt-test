@@ -7,23 +7,17 @@ import { getUserPosts } from "./../../Services/APIs";
 import PostCard from "./PostCard/PostCard";
 import AddPost from "./AddPost/AddPost";
 import nextId from "react-id-generator";
+import { MainContext } from "./../Context/Context";
 export default function UserPage() {
+  const context = React.useContext(MainContext);
+  const { usersObject } = context;
+  const [details, setDetails] = React.useState({});
   const { id } = useParams();
-  const [details, setDetails] = React.useState(null);
   const [postList, setPostList] = React.useState([]);
   const [openModal, setOpenModal] = React.useState(false);
   const [loading, setLoading] = React.useState(false);
+  const [loader, setLoader] = React.useState(true);
 
-  const setUpDetails = async () => {
-    try {
-      let res = await getUserDetails(id);
-      if (res.data) {
-        setDetails(res.data);
-      }
-    } catch (error) {
-      alert(error);
-    }
-  };
   const setUpPostList = async () => {
     try {
       let res = await getUserPosts(id);
@@ -33,6 +27,7 @@ export default function UserPage() {
         });
         setPostList([...temp]);
       }
+      setLoader(false)
     } catch (error) {
       alert(error);
     }
@@ -70,9 +65,12 @@ export default function UserPage() {
     console.log("LIST", postList);
   }, [postList]);
   React.useEffect(() => {
-    setUpDetails();
     setUpPostList();
   }, []);
+  React.useEffect(() => {
+    let temp = usersObject[id];
+    setDetails(temp);
+  }, [usersObject]);
 
   return !details ? (
     "Loading"
@@ -108,11 +106,24 @@ export default function UserPage() {
           </div>
         </aside>
         <aside className="upb-user-posts">
-          {postList.map((obj) => (
-            <div key={obj.key}>
-              <PostCard name={details.name} data={obj} />
-            </div>
-          ))}
+          {loader
+            ? [1, 2, 3, 4, 5, 6].map((obj) => (
+                <div className="post-card-loader">
+                  <h6>
+                    <button />
+                    <span>XXXXXXXXXXXXXXXXXXXX</span>
+                  </h6>
+                  <h5>XXXXXXXXXXXXXXXXXXXXX</h5>
+                  <p>
+                    xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+                  </p>
+                </div>
+              ))
+            : postList.map((obj) => (
+                <div key={obj.key}>
+                  <PostCard name={details.name} data={obj} />
+                </div>
+              ))}
         </aside>
       </section>
     </div>

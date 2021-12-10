@@ -1,13 +1,42 @@
 import React, { Component, createContext } from "react";
+import { getAllUsers } from "./../../Services/APIs";
+import nextId from "react-id-generator";
 
 export const MainContext = createContext();
 
 export default class ContextProvider extends Component {
-  state = {};
-  updateState = (field, val) => {
-    this.setState({ [field]: val });
+  state = {
+    usersList: [],
+    usersObject: null,
   };
-  componentDidMount() {}
+  updateState = (data) => {
+    this.setState({ ...data });
+  };
+
+  initialRender = async () => {
+    try {
+      let res = await getAllUsers();
+      let temp = res.data.map((obj) => {
+        return { ...obj, key: nextId() };
+      });
+      let tempObj = {};
+      res.data.forEach((element) => {
+        tempObj = {
+          ...tempObj,
+          [element.id]: element,
+        };
+      });
+      this.setState({ usersList: [...temp], usersObject: { ...tempObj } });
+    } catch (error) {
+      console.error(error);
+      alert(error);
+      //   setLoading(false)
+    }
+  };
+
+  componentDidMount() {
+    this.initialRender();
+  }
   render() {
     return (
       <MainContext.Provider

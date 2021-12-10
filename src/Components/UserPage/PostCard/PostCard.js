@@ -18,6 +18,7 @@ export default function PostCard({ data, name }) {
       <button
         onClick={(e) => {
           e.stopPropagation();
+          e.preventDefault();
           setPostDetails({ ...postDetails, wished: !postDetails.wished });
         }}
       >

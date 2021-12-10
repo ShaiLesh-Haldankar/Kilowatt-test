@@ -3,7 +3,10 @@ import PropTypes from "prop-types";
 import "./users-table.style.scss";
 import nextId from "react-id-generator";
 import { Link } from "react-router-dom";
-export default function UsersTable({ userList = [], loading }) {
+import { MainContext } from "./../../Context/Context";
+export default function UsersTable({ setOpenModal }) {
+  const context = React.useContext(MainContext);
+  const { usersList } = context;
   return (
     <div className="user-table-main">
       <header>
@@ -14,16 +17,24 @@ export default function UsersTable({ userList = [], loading }) {
         ))}
       </header>
       <section>
-        {loading
+        {!usersList.length
           ? [1, 2, 3, 4, 5, 7].map((obj) => (
               <div className="utr-loader">
-                <h6 ><span>xxxxxxxx</span> </h6>
-                <h6 ><span>xxxxxxxx</span> </h6>
-                <h6 ><span>xxxxxxxx</span> </h6>
-                <h6 ><span>xxxxxxxx</span> </h6>
+                <h6>
+                  <span>xxxxxxxx</span>{" "}
+                </h6>
+                <h6>
+                  <span>xxxxxxxx</span>{" "}
+                </h6>
+                <h6>
+                  <span>xxxxxxxx</span>{" "}
+                </h6>
+                <h6>
+                  <span>xxxxxxxx</span>{" "}
+                </h6>
               </div>
             ))
-          : userList.map((obj) => (
+          : usersList.map((obj) => (
               <div className="user-table-row">
                 <div>
                   <h6>{obj.name}</h6>
@@ -36,6 +47,14 @@ export default function UsersTable({ userList = [], loading }) {
                 </div>
                 <div>
                   <Link to={`/user/${obj.id}`}>View</Link>
+                </div>
+                <div>
+                  {/* <button>
+                    <img src="https://img.icons8.com/ios-glyphs/60/64b464/edit.png" />
+                  </button> */}
+                  <button onClick={() => setOpenModal(obj.id)}>
+                    <img src="https://img.icons8.com/material-sharp/48/ce392f/filled-trash.png" />
+                  </button>
                 </div>
               </div>
             ))}
@@ -52,4 +71,5 @@ const header = [
   { keyId: nextId(), title: "Email" },
   { keyId: nextId(), title: "Company" },
   { keyId: nextId(), title: "Action" },
+  { keyId: nextId(), title: "Others" },
 ];
